@@ -1,4 +1,4 @@
-# school_flutter
+# ecom_flutter
 
 A new Flutter project.
 
