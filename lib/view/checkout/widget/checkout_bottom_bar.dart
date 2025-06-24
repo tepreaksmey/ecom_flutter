@@ -17,16 +17,19 @@ class CheckoutBottomBar extends StatelessWidget {
 
     return SafeArea(
       child: Container(
-        color: Theme.of(context).scaffoldBackgroundColor, // Neutral bg
-        padding: const EdgeInsets.fromLTRB(
-          16,
-          8,
-          16,
-          16,
-        ), // Smaller, cleaner padding
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          border: Border(
+            top: BorderSide(
+              color: isDark ? Colors.grey[800]! : Colors.grey[300]!,
+              width: 1,
+            ),
+          ),
+        ),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
         child: SizedBox(
           width: double.infinity,
-          height: 56, // Set fixed height for clean button
+          height: 56,
           child: ElevatedButton(
             onPressed: onPlaceOrder,
             style: ElevatedButton.styleFrom(
@@ -34,12 +37,12 @@ class CheckoutBottomBar extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              elevation: 3,
+              elevation: 2,
             ),
             child: Text(
-              'Place Order (\$${totalAmount.toStringAsFixed(2)})',
+              'Place Order  •  \$${totalAmount.toStringAsFixed(2)}',
               style: AppTextstyle.withColor(
-                AppTextstyle.bodyMediem,
+                AppTextstyle.buttonMedium,
                 Colors.white,
               ),
             ),

@@ -1,55 +1,39 @@
 class Product {
+  final int id;
   final String name;
   final String category;
   final double price;
   final double? oldPrice;
   final String imageUrl;
   final bool isFavorite;
+  final bool discount;
   final String description;
-  const Product({
-    required this.category,
-    required this.description,
-    required this.imageUrl,
+
+  Product({
+    required this.id,
     required this.name,
+    required this.category,
     required this.price,
     this.oldPrice,
-    this.isFavorite = false,
+    required this.imageUrl,
+    required this.isFavorite,
+    required this.discount,
+    required this.description,
   });
-}
 
-final List<Product> products = [
-  const Product(
-    category: 'Footwear',
-    description: 'This is 1',
-    imageUrl: 'assets/images/shoe.jpg',
-    isFavorite: true,
-    name: 'shoes1',
-    price: 69.00,
-    oldPrice: 189.00,
-  ),
-  const Product(
-    category: 'laptop',
-    description: 'This is 2',
-    imageUrl: 'assets/images/laptop.jpg',
-    isFavorite: true,
-    name: 'shoes2',
-    price: 69.00,
-    oldPrice: 189.00,
-  ),
-  const Product(
-    category: 'jonhdan',
-    description: 'This is 3',
-    imageUrl: 'assets/images/shoe2.jpg',
-    name: 'shoes3',
-    price: 69.00,
-    oldPrice: 189.00,
-  ),
-  const Product(
-    category: 'puma',
-    description: 'This is 1',
-    imageUrl: 'assets/images/shoe.jpg',
-    name: 'shoes4',
-    price: 69.00,
-    oldPrice: 189.00,
-  ),
-];
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'],
+      name: json['name'],
+      category: json['category'],
+      price: double.parse(json['price'].toString()),
+      oldPrice: json['old_price'] != null
+          ? double.tryParse(json['old_price'].toString())
+          : null,
+      imageUrl: json['image_url'] ?? '',
+      isFavorite: json['is_favorite'] ?? false,
+      discount: json['discount'] ?? false,
+      description: json['description'] ?? '',
+    );
+  }
+}

@@ -1,7 +1,8 @@
 import 'package:ecom_flutter/utils/app_textstyles.dart';
 import 'package:ecom_flutter/view/filter_bottom_shett.dart';
 import 'package:ecom_flutter/view/widgets/category_chips.dart';
-import 'package:ecom_flutter/view/widgets/product_grid.dart';
+// import 'package:ecom_flutter/view/widgets/product_grid.dart';
+import 'package:ecom_flutter/view/widgets/product_grid_all.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class ShoppingScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
-          'Shopping',
+          'Product',
           style: AppTextstyle.withColor(
             AppTextstyle.h3,
             isDark ? Colors.white : Colors.black,
@@ -40,8 +41,11 @@ class ShoppingScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(padding: EdgeInsets.only(top: 16), child: CategoryChips()),
-          Expanded(child: ProductGrid()),
+          // Padding(
+          //   padding: EdgeInsets.only(top: 16),
+          //   child: CategoryChips(onCategorySelected: (String category) {}),
+          // ),
+          Expanded(child: ProductGridAll()),
         ],
       ),
     );

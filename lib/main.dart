@@ -1,3 +1,4 @@
+import 'package:ecom_flutter/controllers/cart_controller.dart';
 import 'package:ecom_flutter/controllers/navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
@@ -14,6 +15,7 @@ void main() async {
   Get.put(ThemeController());
   Get.put(AuthController());
   Get.put(NavigationController());
+  Get.put(CartController()); // Register controller globally
   runApp(DevicePreview(builder: (context) => const MyApp()));
 }
 

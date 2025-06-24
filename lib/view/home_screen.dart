@@ -2,6 +2,7 @@ import 'package:ecom_flutter/controllers/theme_controller.dart';
 import 'package:ecom_flutter/view/all_products.dart';
 import 'package:ecom_flutter/view/cart_screen.dart';
 import 'package:ecom_flutter/view/notifications/views/notifications_screen.dart';
+import 'package:ecom_flutter/view/shopping_screen.dart';
 import 'package:ecom_flutter/view/widgets/category_chips.dart';
 import 'package:ecom_flutter/view/widgets/custom_search_bar.dart';
 import 'package:ecom_flutter/view/widgets/product_grid.dart';
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () => Get.to(() => AllProductsScreen()),
+                    onTap: () => Get.to(() => ShoppingScreen()),
                     child: Text(
                       'See All',
                       style: TextStyle(color: Theme.of(context).primaryColor),

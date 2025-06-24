@@ -52,16 +52,23 @@ class CheckoutScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CheckoutBottomBar(
-        totalAmount: 502.23,
+        totalAmount: 502.23, // Replace with your dynamic total if needed
         onPlaceOrder: () {
+          // Generate a unique order number
           final orderNumber =
               'ORD${DateTime.now().millisecondsSinceEpoch.toString().substring(7)}';
+
+          // Navigate to order confirmation
           Get.to(
             () => OrderConfirmationScreen(
               orderNumber: orderNumber,
-              totalAmount: 772.90,
+              totalAmount:
+                  502.23, // Make sure this matches your actual cart total
             ),
           );
+
+          // Optional: clear the cart after placing the order
+          // cartController.clearCart(); // Uncomment if using GetX cart logic
         },
       ),
     );
