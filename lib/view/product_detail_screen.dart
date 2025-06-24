@@ -215,33 +215,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: EdgeInsets.symmetric(
                       vertical: screenSize.height * 0.02,
                     ),
-                    side: BorderSide(
-                      color: isDark ? Colors.white : Colors.black,
-                    ),
-                  ),
-                  child: Text(
-                    'Add To Cart',
-                    style: AppTextstyle.withColor(
-                      AppTextstyle.buttonMedium,
-                      Theme.of(context).textTheme.bodyLarge!.color!,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: screenSize.width * 0.04),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Implement buy now action or checkout flow here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                      vertical: screenSize.height * 0.02,
-                    ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: Text(
-                    'Buy Now',
+                    'Add To Cart',
                     style: AppTextstyle.withColor(
                       AppTextstyle.buttonMedium,
                       Colors.white,
@@ -249,6 +226,27 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
               ),
+              // SizedBox(width: screenSize.width * 0.04),
+              // Expanded(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       // Implement buy now action or checkout flow here
+              //     },
+              //     style: ElevatedButton.styleFrom(
+              //       padding: EdgeInsets.symmetric(
+              //         vertical: screenSize.height * 0.02,
+              //       ),
+              //       backgroundColor: Theme.of(context).primaryColor,
+              //     ),
+              //     child: Text(
+              //       'Buy Now',
+              //       style: AppTextstyle.withColor(
+              //         AppTextstyle.buttonMedium,
+              //         Colors.white,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
