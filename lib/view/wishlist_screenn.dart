@@ -54,7 +54,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
               .toList();
 
           if (favorites.isEmpty) {
-            return const Center(child: Text('No items in your wishlist.'));
+            return const Center(child: Text('No items For your Favorite.'));
           }
 
           return ListView.builder(

@@ -228,6 +228,7 @@ class CartScreen extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
+                cartController.clearCart();
                 Get.to(() => const CheckoutScreen());
               },
               style: ElevatedButton.styleFrom(

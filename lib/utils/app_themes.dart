@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppThemes {
   static final light = ThemeData(
-    primaryColor: const Color(0xFFff5722),
+    primaryColor: const Color.fromARGB(255, 58, 196, 154),
     scaffoldBackgroundColor: Colors.white,
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
@@ -19,14 +19,15 @@ class AppThemes {
     cardColor: Colors.white,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
-      selectedItemColor: Color(0xFFff5722),
+      selectedItemColor: Color.fromARGB(255, 94, 212, 177),
       unselectedItemColor: Colors.grey,
     ),
   );
 
   //dark
   static final dark = ThemeData(
-    primaryColor: const Color(0xFFff5722),
+    primaryColor: const Color.fromARGB(255, 94, 212, 177),
+
     scaffoldBackgroundColor: const Color(0xFF121212),
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
@@ -43,7 +44,7 @@ class AppThemes {
     cardColor: const Color(0xFF121212),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFF121212),
-      selectedItemColor: Color(0xFFff5722),
+      selectedItemColor: Color.fromARGB(255, 255, 255, 255),
       unselectedItemColor: Colors.grey,
     ),
   );
