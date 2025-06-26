@@ -24,7 +24,7 @@ class CustomBottomNavbar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
-            label: 'Wishlist',
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),

@@ -134,15 +134,15 @@ class _WishlistScreenState extends State<WishlistScreen> {
                               color: Theme.of(context).primaryColor,
                             ),
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.delete_outline,
-                              color: isDark
-                                  ? Colors.grey[400]
-                                  : Colors.grey[600],
-                            ),
-                          ),
+                          // IconButton(
+                          //   onPressed: () {},
+                          //   icon: Icon(
+                          //     Icons.delete_outline,
+                          //     color: isDark
+                          //         ? Colors.grey[400]
+                          //         : Colors.grey[600],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
