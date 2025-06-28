@@ -46,6 +46,9 @@ class AccountScreen extends StatelessWidget {
   }
 
   Widget _buildProfileSection(BuildContext context) {
+    final authController = Get.find<AuthController>();
+    final name = authController.currentUser.value?.name ?? 'Guest';
+    final email = authController.currentUser.value?.email ?? 'guest@gmail.com';
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: double.infinity,
@@ -62,7 +65,7 @@ class AccountScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Tep Reaksmey',
+            "$name",
             style: AppTextstyle.withColor(
               AppTextstyle.h2,
               Theme.of(context).textTheme.bodyLarge!.color!,
@@ -70,7 +73,7 @@ class AccountScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'smey@gmail.com',
+            '$email',
             style: AppTextstyle.withColor(
               AppTextstyle.bodyMediem,
               isDark ? Colors.grey[400]! : Colors.grey[600]!,

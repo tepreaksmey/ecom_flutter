@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class ProductService {
   static Future<List<Product>> fetchProducts() async {
     final response = await http.get(
-      Uri.parse('http://192.168.146.1:8000/api/products'),
+      Uri.parse('http://127.0.0.1:8000/api/products'),
     );
 
     if (response.statusCode == 200) {

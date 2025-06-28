@@ -1,3 +1,4 @@
+import 'package:ecom_flutter/controllers/auth_controller.dart';
 import 'package:ecom_flutter/controllers/theme_controller.dart';
 import 'package:ecom_flutter/view/all_products.dart';
 import 'package:ecom_flutter/view/cart_screen.dart';
@@ -15,6 +16,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
+    final name = authController.currentUser.value?.name ?? 'Guest';
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -34,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello Tinker',
+                        'Hello $name',
                         style: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       Text(

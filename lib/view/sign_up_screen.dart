@@ -1,3 +1,4 @@
+import 'package:ecom_flutter/controllers/auth_controller.dart';
 import 'package:ecom_flutter/utils/app_textstyles.dart';
 import 'package:ecom_flutter/view/main_screen.dart';
 import 'package:ecom_flutter/view/signin_screen.dart';
@@ -117,7 +118,26 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => Get.off(() => const MainScreen()),
+                  onPressed: () {
+                    final authController = Get.find<AuthController>();
+
+                    final name = _nameController.text.trim();
+                    final email = _emailController.text.trim();
+                    final password = _passwordController.text.trim();
+
+                    // Optional: validate here before register
+                    authController.register(name, email, password);
+
+                    Get.snackbar(
+                      'Success',
+                      'Account created successfully',
+                      snackPosition: SnackPosition.TOP,
+                      backgroundColor: const Color.fromARGB(255, 190, 250, 192),
+                    );
+
+                    // Navigate to sign-in screen after sign-up
+                    Get.off(() => SigninScreen());
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                     padding: const EdgeInsets.symmetric(vertical: 16),

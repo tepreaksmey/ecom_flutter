@@ -11,6 +11,26 @@ class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  void _handleSignIn() {
+    final AuthController authController = Get.find<AuthController>();
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    final isSuccess = authController.login(email, password);
+
+    if (isSuccess) {
+      Get.offAll(() => MainScreen());
+    } else {
+      Get.snackbar(
+        'Login Failed',
+        'Incorrect email or password',
+        backgroundColor: Colors.redAccent,
+        colorText: Colors.white,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -133,9 +153,9 @@ class SigninScreen extends StatelessWidget {
   }
 
   //sign in btn onpress
-  void _handleSignIn() {
-    final AuthController authController = Get.find<AuthController>();
-    authController.login();
-    Get.offAll(() => MainScreen());
-  }
+  // void _handleSignIn() {
+  //   final AuthController authController = Get.find<AuthController>();
+  //   authController.login();
+  //   Get.offAll(() => MainScreen());
+  // }
 }
