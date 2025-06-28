@@ -1,3 +1,4 @@
+import 'package:ecom_flutter/controllers/cart_controller.dart';
 import 'package:ecom_flutter/utils/app_textstyles.dart';
 import 'package:ecom_flutter/view/checkout/widget/address_card.dart';
 import 'package:ecom_flutter/view/checkout/widget/checkout_bottom_bar.dart';
@@ -14,7 +15,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    final CartController cartController = Get.find<CartController>();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -52,7 +53,8 @@ class CheckoutScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CheckoutBottomBar(
-        totalAmount: 502.23, // Replace with your dynamic total if needed
+        totalAmount:
+            cartController.total, // Replace with your dynamic total if needed
         onPlaceOrder: () {
           // Generate a unique order number
           final orderNumber =
@@ -62,8 +64,8 @@ class CheckoutScreen extends StatelessWidget {
           Get.to(
             () => OrderConfirmationScreen(
               orderNumber: orderNumber,
-              totalAmount:
-                  502.23, // Make sure this matches your actual cart total
+              totalAmount: cartController.total,
+              // Make sure this matches your actual cart total
             ),
           );
 

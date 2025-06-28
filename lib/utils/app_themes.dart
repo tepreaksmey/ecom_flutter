@@ -11,8 +11,8 @@ class AppThemes {
       iconTheme: IconThemeData(color: Colors.black),
     ),
     colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xFFff5722),
-      primary: const Color(0xFFff5722),
+      seedColor: const Color.fromARGB(255, 58, 196, 154),
+      primary: const Color.fromARGB(255, 58, 196, 154),
       brightness: Brightness.light,
       surface: Colors.white,
     ),
@@ -36,8 +36,8 @@ class AppThemes {
       iconTheme: IconThemeData(color: Colors.white),
     ),
     colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xFFff5722),
-      primary: const Color(0xFFff5722),
+      seedColor: const Color.fromARGB(255, 94, 212, 177),
+      primary: const Color.fromARGB(255, 94, 212, 177),
       brightness: Brightness.dark,
       surface: const Color(0xFF121212),
     ),

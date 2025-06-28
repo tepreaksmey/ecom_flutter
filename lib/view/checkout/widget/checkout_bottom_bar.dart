@@ -1,5 +1,7 @@
+import 'package:ecom_flutter/controllers/cart_controller.dart';
 import 'package:ecom_flutter/utils/app_textstyles.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CheckoutBottomBar extends StatelessWidget {
   final double totalAmount;
@@ -14,6 +16,7 @@ class CheckoutBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final CartController cartController = Get.find();
 
     return SafeArea(
       child: Container(
@@ -31,7 +34,10 @@ class CheckoutBottomBar extends StatelessWidget {
           width: double.infinity,
           height: 56,
           child: ElevatedButton(
-            onPressed: onPlaceOrder,
+            onPressed: () {
+              onPlaceOrder();
+              cartController.clearCart();
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(
@@ -40,7 +46,7 @@ class CheckoutBottomBar extends StatelessWidget {
               elevation: 2,
             ),
             child: Text(
-              'Place Order  •  \$${totalAmount.toStringAsFixed(2)}',
+              'Place Order  •  \$${(totalAmount + 2.00).toStringAsFixed(2)}',
               style: AppTextstyle.withColor(
                 AppTextstyle.buttonMedium,
                 Colors.white,

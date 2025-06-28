@@ -1,6 +1,8 @@
+import 'package:ecom_flutter/controllers/cart_controller.dart';
 import 'package:ecom_flutter/utils/app_textstyles.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OrderSummaryCard extends StatelessWidget {
   const OrderSummaryCard({super.key});
@@ -8,6 +10,8 @@ class OrderSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final CartController cartController = Get.find<CartController>();
+    final double finalTotal = cartController.total + 1.50 + 0.50;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -26,16 +30,25 @@ class OrderSummaryCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildSummaryRow(context, 'Subtotal', '\$200.23'),
+          _buildSummaryRow(
+            context,
+            'Subtotal',
+            '\$${cartController.total.toStringAsFixed(2)}',
+          ),
           const SizedBox(height: 8),
-          _buildSummaryRow(context, 'Shipping', '\$10.23'),
+          _buildSummaryRow(context, 'Shipping', '\$1.50'),
           const SizedBox(height: 8),
-          _buildSummaryRow(context, 'Tax', '\$8.0'),
+          _buildSummaryRow(context, 'Tax', '\$0.50'),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 12),
             child: Divider(),
           ),
-          _buildSummaryRow(context, 'Total', '\$400.23', isTotal: true),
+          _buildSummaryRow(
+            context,
+            'Total',
+            '\$${finalTotal.toStringAsFixed(2)}',
+            isTotal: true,
+          ),
         ],
       ),
     );
