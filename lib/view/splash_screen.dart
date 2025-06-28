@@ -94,12 +94,12 @@ class SplashScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "Tinker",
+                          "NGEAY TINH",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,
-                            fontWeight: FontWeight.w300,
-                            letterSpacing: 8,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 2,
                           ),
                         ),
                         Text(
