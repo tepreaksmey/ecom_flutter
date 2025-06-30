@@ -15,7 +15,7 @@ void main() async {
   Get.put(ThemeController());
   Get.put(AuthController());
   Get.put(NavigationController());
-  Get.put(CartController()); // Register controller globally
+  Get.put(CartController());
   runApp(DevicePreview(builder: (context) => const MyApp()));
 }
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Get.find<ThemeController>();
     return GetMaterialApp(
-      title: "Tinker Store",
+      title: "Ngeay Tinh Store",
       debugShowCheckedModeBanner: false,
       theme: AppThemes.light,
       darkTheme: AppThemes.dark,
