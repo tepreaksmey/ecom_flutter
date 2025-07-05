@@ -1,25 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:ecom_flutter/controllers/auth_controller.dart';
-import 'package:get/get.dart';
 import 'package:ecom_flutter/view/main_screen.dart';
 import 'package:ecom_flutter/view/onboarding_screen.dart';
 import 'package:ecom_flutter/view/signin_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
   final AuthController authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
-    //navigate based on auth state after 2.5 second
-    Future.delayed(const Duration(seconds: 2), () {
+    // Delay navigation for 2.5 seconds
+    Future.delayed(const Duration(milliseconds: 2500), () {
       if (authController.isFirstTime) {
-        Get.off(() => const OnboardingScreen());
-      } else if (authController.isLoggedIn) {
-        Get.off(() => const MainScreen());
+        Get.off(() => OnboardingScreen());
       } else {
         Get.off(() => SigninScreen());
       }
     });
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -35,19 +35,20 @@ class SplashScreen extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            //background patten
+            // Background pattern
             Positioned.fill(
               child: Opacity(
                 opacity: 0.05,
                 child: GridPattern(color: Colors.white),
               ),
-
-              //main content
             ),
+
+            // Main content
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Logo animation
                   TweenAnimationBuilder<double>(
                     tween: Tween(begin: 0.0, end: 1.0),
                     duration: const Duration(milliseconds: 1200),
@@ -77,8 +78,10 @@ class SplashScreen extends StatelessWidget {
                       );
                     },
                   ),
+
                   const SizedBox(height: 32),
-                  //animate text
+
+                  // Animated app name
                   TweenAnimationBuilder<double>(
                     tween: Tween(begin: 0.0, end: 1.0),
                     duration: const Duration(milliseconds: 1200),
@@ -92,7 +95,7 @@ class SplashScreen extends StatelessWidget {
                       );
                     },
                     child: Column(
-                      children: [
+                      children: const [
                         Text(
                           "NGEAY TINH",
                           style: TextStyle(
@@ -114,10 +117,11 @@ class SplashScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  //bottom tagline
                 ],
               ),
             ),
+
+            // Bottom tagline
             Positioned(
               bottom: 48,
               left: 0,
@@ -129,7 +133,7 @@ class SplashScreen extends StatelessWidget {
                   return Opacity(opacity: value, child: child);
                 },
                 child: Text(
-                  'Style meet simplic',
+                  'Style meets simplicity',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
@@ -147,6 +151,7 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
+// Grid pattern for background
 class GridPattern extends StatelessWidget {
   final Color color;
   const GridPattern({Key? key, required this.color}) : super(key: key);
@@ -167,15 +172,17 @@ class GridPainter extends CustomPainter {
       ..color = color
       ..strokeWidth = 0.5;
 
-    final spacing = 20.0;
-    for (var i = 0.0; i < size.width; i += spacing) {
-      canvas.drawLine(Offset(i, 0), Offset(i, size.height), paint);
+    const spacing = 20.0;
+
+    for (var x = 0.0; x < size.width; x += spacing) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
     }
-    for (var i = 0.0; i < size.height; i += spacing) {
-      canvas.drawLine(Offset(0, i), Offset(size.width, i), paint);
+
+    for (var y = 0.0; y < size.height; y += spacing) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
     }
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDeletate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

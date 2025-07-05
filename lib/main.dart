@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Important!
   await GetStorage.init();
   Get.put(ThemeController());
   Get.put(AuthController());

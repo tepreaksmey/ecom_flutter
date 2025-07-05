@@ -1,17 +1,17 @@
-import 'package:ecom_flutter/models/userModel.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import '../models/userModel.dart';
 
 class AuthController extends GetxController {
   final _storage = GetStorage();
+
   final RxBool _isFirstTime = true.obs;
-  final RxBool _isloggedIn = false.obs;
-
+  final RxBool _isLoggedIn = false.obs;
   final RxList<UserModel> _users = <UserModel>[].obs;
-
   final Rx<UserModel?> currentUser = Rx<UserModel?>(null);
+
   bool get isFirstTime => _isFirstTime.value;
-  bool get isLoggedIn => _isloggedIn.value;
+  bool get isLoggedIn => _isLoggedIn.value;
 
   @override
   void onInit() {
@@ -20,8 +20,27 @@ class AuthController extends GetxController {
   }
 
   void _loadInitialState() {
-    _isFirstTime.value = _storage.read('isfirstTime') ?? true;
-    _isloggedIn.value = _storage.read('isLoggedIn') ?? false;
+    _isFirstTime.value = _storage.read('isFirstTime') ?? true;
+    _isLoggedIn.value = _storage.read('isLoggedIn') ?? false;
+
+    final usersData = _storage.read<List>('users') ?? [];
+    print('Loaded usersData from storage: $usersData');
+
+    _users.assignAll(
+      usersData.map((u) => UserModel.fromJson(Map<String, dynamic>.from(u))),
+    );
+
+    final currentEmail = _storage.read<String>('currentUserEmail');
+    print('Loaded currentUserEmail from storage: $currentEmail');
+
+    if (currentEmail != null) {
+      currentUser.value = _users.firstWhereOrNull(
+        (u) => u.email == currentEmail,
+      );
+      print('Current user loaded: ${currentUser.value?.email}');
+    } else {
+      currentUser.value = null;
+    }
   }
 
   void setFirstTimeDone() {
@@ -29,10 +48,22 @@ class AuthController extends GetxController {
     _storage.write('isFirstTime', false);
   }
 
-  // void login() {
-  //   _isloggedIn.value = true;
-  //   _storage.write('isLoggedIn', true);
-  // }
+  void register(String name, String email, String password) {
+    final user = UserModel(name: name, email: email, password: password);
+
+    // Check if user already exists (optional)
+    final existingUser = _users.firstWhereOrNull((u) => u.email == email);
+    if (existingUser != null) {
+      print('User with email $email already exists!');
+      return;
+    }
+
+    _users.add(user);
+    print('Registering user: ${user.toJson()}');
+
+    _storage.write('users', _users.map((u) => u.toJson()).toList());
+    print('Saved users: ${_users.map((u) => u.toJson()).toList()}');
+  }
 
   bool login(String email, String password) {
     final user = _users.firstWhereOrNull(
@@ -40,24 +71,21 @@ class AuthController extends GetxController {
     );
     if (user != null) {
       currentUser.value = user;
-      _isloggedIn.value = true;
-      // ✅ Save to local storage
-      final storage = GetStorage();
-      storage.write('isLoggedIn', true);
-      storage.write('currentUserEmail', user.email);
+      _isLoggedIn.value = true;
+      _storage.write('isLoggedIn', true);
+      _storage.write('currentUserEmail', user.email);
+      print('Login success for user: ${user.email}');
       return true;
-    } else {
-      return false;
     }
+    print('Login failed for email: $email');
+    return false;
   }
 
   void logout() {
-    _isloggedIn.value = false;
+    _isLoggedIn.value = false;
+    currentUser.value = null;
     _storage.write('isLoggedIn', false);
-  }
-
-  void register(String name, String email, String password) {
-    final user = UserModel(name: name, email: email, password: password);
-    _users.add(user);
+    _storage.remove('currentUserEmail');
+    print('User logged out');
   }
 }

@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -25,6 +26,7 @@ class SigninScreen extends StatelessWidget {
       Get.snackbar(
         'Login Failed',
         'Incorrect email or password',
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent,
         colorText: Colors.white,
       );
@@ -34,6 +36,7 @@ class SigninScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,14 +54,15 @@ class SigninScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Sign in to continues shopping',
+                'Sign in to continue shopping',
                 style: AppTextstyle.withColor(
                   AppTextstyle.bodyLarge,
                   isDark ? Colors.grey[400]! : Colors.grey[600]!,
                 ),
               ),
               const SizedBox(height: 40),
-              //email textfield
+
+              /// Email Field
               CustomTextfield(
                 label: 'Email',
                 prefixIcon: Icons.email_outlined,
@@ -66,16 +70,18 @@ class SigninScreen extends StatelessWidget {
                 controller: _emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please Enter a valid email';
+                    return 'Please enter your email';
                   }
                   if (!GetUtils.isEmail(value)) {
-                    return 'Please Enter a valid email';
+                    return 'Please enter a valid email';
                   }
                   return null;
                 },
               ),
+
               const SizedBox(height: 16),
-              //password textfield
+
+              /// Password Field
               CustomTextfield(
                 label: 'Password',
                 prefixIcon: Icons.lock_outline,
@@ -84,13 +90,15 @@ class SigninScreen extends StatelessWidget {
                 controller: _passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please Enter a valid Password';
+                    return 'Please enter your password';
                   }
                   return null;
                 },
               ),
+
               const SizedBox(height: 8),
-              //forget password textbtn
+
+              /// Forgot Password Button
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -104,7 +112,10 @@ class SigninScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
               const SizedBox(height: 24),
+
+              /// Sign In Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -112,6 +123,9 @@ class SigninScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                     padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                   child: Text(
                     'Sign In',
@@ -122,12 +136,15 @@ class SigninScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
               const SizedBox(height: 24),
+
+              /// Go to Sign Up
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account",
+                    "Don't have an account?",
                     style: AppTextstyle.withColor(
                       AppTextstyle.bodyMediem,
                       isDark ? Colors.grey[400]! : Colors.grey[600]!,
@@ -136,7 +153,7 @@ class SigninScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () => Get.to(() => SignUpScreen()),
                     child: Text(
-                      'sign up',
+                      'Sign Up',
                       style: AppTextstyle.withColor(
                         AppTextstyle.buttonMedium,
                         Theme.of(context).primaryColor,
@@ -151,11 +168,4 @@ class SigninScreen extends StatelessWidget {
       ),
     );
   }
-
-  //sign in btn onpress
-  // void _handleSignIn() {
-  //   final AuthController authController = Get.find<AuthController>();
-  //   authController.login();
-  //   Get.offAll(() => MainScreen());
-  // }
 }
